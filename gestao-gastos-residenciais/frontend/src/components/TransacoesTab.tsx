@@ -6,21 +6,13 @@ interface Props {
   pessoas: Pessoa[];
   transacoes: Transacao[];
   carregando: boolean;
-  /** Chamado após criar uma transação, para recarregar os dados no componente pai. */
   onAlterado: () => void;
 }
 
 const formatoMoeda = new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" });
-
 const IDADE_MINIMA_PARA_RECEITA = 18;
 
-/**
- * Aba de cadastro de transações: formulário de criação + listagem.
- * Quando a pessoa selecionada é menor de idade, a opção "Receita" fica
- * desabilitada no próprio formulário — refletindo no front-end a mesma
- * regra de negócio aplicada em TransacaoService no back-end (a validação
- * final e definitiva sempre acontece no servidor).
- */
+// desabilita "Receita" no formulário quando a pessoa é menor — a validação que vale mesmo é no back-end
 export default function TransacoesTab({ pessoas, transacoes, carregando, onAlterado }: Props) {
   const [descricao, setDescricao] = useState("");
   const [valor, setValor] = useState("");
@@ -35,8 +27,7 @@ export default function TransacoesTab({ pessoas, transacoes, carregando, onAlter
   );
   const pessoaEhMenorDeIdade = (pessoaSelecionada?.idade ?? 0) < IDADE_MINIMA_PARA_RECEITA;
 
-  // Se o usuário tinha "Receita" selecionado e trocar para uma pessoa menor
-  // de idade, força a volta para "Despesa" automaticamente.
+  // se trocar pra uma pessoa menor de idade, força voltar pra "Despesa"
   useEffect(() => {
     if (pessoaSelecionada && pessoaEhMenorDeIdade && tipo === "Receita") {
       setTipo("Despesa");

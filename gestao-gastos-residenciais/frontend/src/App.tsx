@@ -8,12 +8,7 @@ import TotaisTab from "./components/TotaisTab";
 
 type Aba = "pessoas" | "transacoes" | "totais";
 
-/**
- * Componente raiz da aplicação. Concentra o estado compartilhado entre as
- * três abas (pessoas, transações e totais) e é responsável por buscar os
- * dados na API sempre que algo é criado/removido em qualquer uma delas —
- * isso garante que a aba de Totais sempre reflita o estado mais recente.
- */
+// guarda o estado das 3 abas e recarrega tudo quando algo muda em qualquer uma delas
 function App() {
   const [abaAtiva, setAbaAtiva] = useState<Aba>("pessoas");
 

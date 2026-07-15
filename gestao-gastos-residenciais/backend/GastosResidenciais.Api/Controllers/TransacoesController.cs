@@ -4,7 +4,6 @@ using GastosResidenciais.Api.Services;
 
 namespace GastosResidenciais.Api.Controllers;
 
-/// <summary>Endpoints para gerenciar o cadastro de transações financeiras.</summary>
 [ApiController]
 [Route("api/[controller]")]
 public class TransacoesController : ControllerBase
@@ -16,7 +15,6 @@ public class TransacoesController : ControllerBase
         _transacaoService = transacaoService;
     }
 
-    /// <summary>GET /api/transacoes — lista todas as transações cadastradas.</summary>
     [HttpGet]
     public async Task<ActionResult<IEnumerable<TransacaoDto>>> Listar()
     {
@@ -24,10 +22,6 @@ public class TransacoesController : ControllerBase
         return Ok(transacoes);
     }
 
-    /// <summary>
-    /// POST /api/transacoes — cadastra uma nova transação. Pessoas menores
-    /// de 18 anos só podem cadastrar despesas (ver regra em TransacaoService).
-    /// </summary>
     [HttpPost]
     public async Task<ActionResult<TransacaoDto>> Criar([FromBody] CriarTransacaoDto dto)
     {

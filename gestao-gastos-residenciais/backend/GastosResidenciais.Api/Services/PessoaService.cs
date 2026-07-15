@@ -6,9 +6,6 @@ using GastosResidenciais.Api.Models;
 
 namespace GastosResidenciais.Api.Services;
 
-/// <summary>
-/// Implementa as regras de negócio relacionadas ao cadastro de pessoas.
-/// </summary>
 public class PessoaService : IPessoaService
 {
     private readonly AppDbContext _context;
@@ -48,10 +45,7 @@ public class PessoaService : IPessoaService
 
     public async Task DeletarAsync(int id)
     {
-        // Carrega a pessoa junto com suas transações: dessa forma, o
-        // Entity Framework Core aplica o delete em cascata configurado no
-        // AppDbContext e remove tanto a pessoa quanto todas as suas
-        // transações em uma única operação (SaveChangesAsync).
+        // carrega as transações pra aplicar o cascade delete
         var pessoa = await _context.Pessoas
             .Include(p => p.Transacoes)
             .FirstOrDefaultAsync(p => p.Id == id);

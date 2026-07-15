@@ -7,11 +7,6 @@ interface Props {
 
 const formatoMoeda = new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" });
 
-/**
- * Aba de consulta de totais: mostra, para cada pessoa cadastrada, o total
- * de receitas, despesas e saldo, e ao final uma linha com o total geral
- * somando todas as pessoas.
- */
 export default function TotaisTab({ totais, carregando }: Props) {
   if (carregando) {
     return <p className="texto-vazio">Carregando...</p>;

@@ -5,15 +5,10 @@ import { pessoasApi, extrairMensagemDeErro } from "../services/api";
 interface Props {
   pessoas: Pessoa[];
   carregando: boolean;
-  /** Chamado após criar ou remover uma pessoa, para recarregar os dados no componente pai. */
-  onAlterado: () => void;
+  onAlterado: () => void; // recarrega os dados no componente pai
 }
 
-/**
- * Aba de cadastro de pessoas: formulário de criação + listagem com opção
- * de exclusão. Ao excluir uma pessoa, o back-end remove em cascata todas
- * as transações associadas a ela (ver PessoaService.DeletarAsync).
- */
+
 export default function PessoasTab({ pessoas, carregando, onAlterado }: Props) {
   const [nome, setNome] = useState("");
   const [idade, setIdade] = useState("");

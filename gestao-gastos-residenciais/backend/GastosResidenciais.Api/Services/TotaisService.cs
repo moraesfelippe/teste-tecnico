@@ -5,10 +5,6 @@ using GastosResidenciais.Api.Models;
 
 namespace GastosResidenciais.Api.Services;
 
-/// <summary>
-/// Implementa o cálculo de totais de receitas, despesas e saldo por
-/// pessoa, além do total geral do sistema.
-/// </summary>
 public class TotaisService : ITotaisService
 {
     private readonly AppDbContext _context;
@@ -39,7 +35,6 @@ public class TotaisService : ITotaisService
             totalReceitas - totalDespesas);
     }
 
-    /// <summary>Soma as receitas e despesas de uma pessoa e calcula o saldo dela.</summary>
     private static TotalPessoaDto CalcularTotalDaPessoa(Pessoa pessoa)
     {
         var totalReceitas = pessoa.Transacoes

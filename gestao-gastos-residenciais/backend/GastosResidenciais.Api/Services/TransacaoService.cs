@@ -6,12 +6,8 @@ using GastosResidenciais.Api.Models;
 
 namespace GastosResidenciais.Api.Services;
 
-/// <summary>
-/// Implementa as regras de negócio relacionadas ao cadastro de transações.
-/// </summary>
 public class TransacaoService : ITransacaoService
 {
-    /// <summary>Idade mínima, em anos, para que uma pessoa possa registrar receitas.</summary>
     private const int IdadeMinimaParaReceita = 18;
 
     private readonly AppDbContext _context;
@@ -37,7 +33,6 @@ public class TransacaoService : ITransacaoService
         if (dto.Valor <= 0)
             throw new RegraDeNegocioException("O valor deve ser maior que zero.");
 
-        // A pessoa informada precisa existir no cadastro de pessoas.
         var pessoa = await _context.Pessoas.FindAsync(dto.PessoaId);
         if (pessoa is null)
         {
@@ -45,8 +40,7 @@ public class TransacaoService : ITransacaoService
                 $"Pessoa com id {dto.PessoaId} não foi encontrada. Cadastre a pessoa antes de lançar a transação.");
         }
 
-        // Regra de negócio principal: pessoas menores de 18 anos só podem
-        // cadastrar despesas, nunca receitas.
+        // menor de idade só pode cadastrar despesa
         if (pessoa.Idade < IdadeMinimaParaReceita && dto.Tipo == TipoTransacao.Receita)
         {
             throw new RegraDeNegocioException(

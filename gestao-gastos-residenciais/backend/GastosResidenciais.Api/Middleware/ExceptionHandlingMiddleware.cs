@@ -4,12 +4,7 @@ using GastosResidenciais.Api.Exceptions;
 
 namespace GastosResidenciais.Api.Middleware;
 
-/// <summary>
-/// Middleware central de tratamento de erros da API. Converte exceções de
-/// domínio (regra de negócio violada, recurso não encontrado) em respostas
-/// HTTP com status e corpo JSON apropriados, evitando repetir blocos
-/// try/catch em cada controller.
-/// </summary>
+// converte exceções de domínio em respostas HTTP (evita try/catch repetido em cada controller)
 public class ExceptionHandlingMiddleware
 {
     private readonly RequestDelegate _next;

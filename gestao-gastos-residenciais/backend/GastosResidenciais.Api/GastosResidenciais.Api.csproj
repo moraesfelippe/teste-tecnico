@@ -8,18 +8,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <!-- Provedor do Entity Framework Core para SQLite: persiste os dados
-         em um único arquivo (gastos.db), sem exigir servidor de banco. -->
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.10" />
-
-    <!-- Ferramentas de design-time do EF Core (úteis caso queira gerar
-         migrations com "dotnet ef migrations add"). -->
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.10">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-
-    <!-- Swagger/OpenAPI: gera documentação e uma interface para testar a API manualmente. -->
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
   </ItemGroup>
 
